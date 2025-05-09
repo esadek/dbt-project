@@ -16,7 +16,7 @@ jobs:
         run: uv sync
 
       - name: Run linters
-        run: uv run just lint
+        run: uv run just lint-ci
 
       - name: Run tests
-        run: uv run just test
+        run: uv run just test-ci

@@ -7,13 +7,21 @@ deps:
 run:
     uv run dbt run
 
-test: deps seed run
+test:
     uv run dbt test
 
-lint: deps
+test-ci: deps seed run
+    uv run dbt test
+
+lint:
     uv run sqlfluff lint
     uv run yamllint .
     uv run ruff check --fix
+
+lint-ci: deps
+    uv run sqlfluff lint --format github-annotation-native
+    uv run yamllint .
+    uv run ruff check --output-format=github .
 
 format:
     uv run sqlfluff format
