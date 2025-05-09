@@ -1,0 +1,72 @@
+sources:
+  - name: ecom
+    schema: main
+    description: E-commerce data for the Jaffle Shop
+    freshness:
+      warn_after:
+        count: 24
+        period: hour
+    tables:
+      - name: raw_customers
+        description: One record per person who has purchased one or more items
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+      - name: raw_orders
+        description: One record per order (consisting of one or more order items)
+        loaded_at_field: ordered_at
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: customer
+          - name: ordered_at
+          - name: store_id
+          - name: subtotal
+          - name: tax_paid
+          - name: order_total
+      - name: raw_items
+        description: Items included in an order
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+          - name: sku
+      - name: raw_stores
+        loaded_at_field: opened_at
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: opened_at
+          - name: tax_rate
+      - name: raw_products
+        description: One record per SKU for items sold in stores
+        columns:
+          - name: sku
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: type
+          - name: price
+          - name: description
+      - name: raw_supplies
+        description: One record per supply per SKU of items sold in stores
+        columns:
+          - name: id
+            tests:
+              - not_null
+              - dbt_utils.not_constant
+          - name: name
+          - name: cost
+          - name: perishable
+          - name: sku

@@ -1,0 +1,13 @@
+---
+
+extends: default
+
+ignore:
+  - dbt_packages/
+  - .venv/
+  - .github/workflows/
+
+rules:
+  document-start: disable
+  line-length:
+    max: 100

@@ -1,0 +1,5 @@
+models:
+  - name: dim_customers
+  - name: dim_stores
+  - name: dim_supplies
+  - name: fct_sales

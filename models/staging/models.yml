@@ -1,0 +1,48 @@
+models:
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+  - name: stg_stores
+    columns:
+      - name: store_id
+      - name: store_name
+      - name: tax_rate
+      - name: opened_date
+  - name: stg_items
+    columns:
+      - name: item_id
+      - name: order_id
+      - name: product_id
+  - name: stg_orders
+    columns:
+      - name: order_id
+      - name: store_id
+      - name: customer_id
+      - name: subtotal_cents
+      - name: tax_paid_cents
+      - name: order_total_cents
+      - name: subtotal
+      - name: tax_paid
+      - name: order_total
+      - name: ordered_at
+  - name: stg_products
+    columns:
+      - name: product_id
+      - name: product_name
+      - name: product_type
+      - name: product_description
+      - name: product_price
+      - name: is_food_item
+      - name: is_drink_item
+  - name: stg_supplies
+    columns:
+      - name: supply_uuid
+      - name: supply_id
+      - name: product_id
+      - name: supply_name
+      - name: supply_cost
+      - name: is_perishable_supply
