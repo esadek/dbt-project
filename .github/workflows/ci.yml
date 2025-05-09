@@ -13,10 +13,12 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       - name: Install the project
-        run: uv sync
+        run: |
+          uv sync
+          source .venv/bin/activate
 
       - name: Run linters
-        run: uv run just lint
+        run: just lint
 
       - name: Run tests
-        run: uv run just test
+        run: just test
