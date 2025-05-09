@@ -15,11 +15,8 @@ jobs:
       - name: Install the project
         run: uv sync
 
-      - name: Run SQLFluff
-        run: uv run sqlfluff lint --format github-annotation-native
+      - name: Run linters
+        run: uv run just lint
 
-      - name: Run yamllint
-        run: uv run yamllint .
-
-      - name: Run Ruff
-        run: uv run ruff check --output-format=github .
+      - name: Run tests
+        run: uv run just test
