@@ -10,7 +10,7 @@ run:
 test: deps seed run
     uv run dbt test
 
-lint:
+lint: deps
     uv run sqlfluff lint
     uv run yamllint .
     uv run ruff check --fix
