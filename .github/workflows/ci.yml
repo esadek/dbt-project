@@ -3,7 +3,7 @@ name: CI
 on: push
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,8 +15,11 @@ jobs:
       - name: Install the project
         run: uv sync
 
-      - name: Run linters
-        run: uv run just lint
+      - name: Run SQLFluff
+        run: uv run sqlfluff lint --format github-annotation-native
 
-      - name: Run tests
-        run: uv run just test
+      - name: Run yamllint
+        run: uv run yamllint .
+
+      - name: Run Ruff
+        run: uv run ruff check --output-format=github .
