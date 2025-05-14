@@ -6,17 +6,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v3
+      - uses: astral-sh/setup-uv@v5
 
       - name: Install the project
         run: uv sync
 
       - name: Run linters
-        run: |
-          uv run sqlfluff lint --format github-annotation-native
-          uv run yamllint .
-          uv run ruff check --output-format=github .
+        run: just lint-ci
+
+      - name: Run tests
+        run: just test-ci
