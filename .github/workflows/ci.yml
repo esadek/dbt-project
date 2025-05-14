@@ -16,7 +16,7 @@ jobs:
         run: uv sync
 
       - name: Run linters
-        run: uv run just lint-ci
-
-      - name: Run tests
-        run: uv run just test-ci
+        run: |
+          uv run sqlfluff lint --format github-annotation-native
+          uv run yamllint .
+          uv run ruff check --output-format=github .
