@@ -13,7 +13,6 @@ dependencies = [
 [dependency-groups]
 dev = [
     "ruff>=0.11.2",
-    "rust-just>=1.40.0",
     "sqlfluff>=3.3.1",
     "sqlfluff-templater-dbt>=3.3.1",
     "yamllint>=1.37.0",
